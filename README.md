@@ -3,7 +3,7 @@ Dropbox
 
 CS 360 project designed to teach us cloud storage
 
-We are going to be bosses and recreate Dropbox. Here's an email I sent out earlier with details on what we may do.
+We are going to be bosses and recreate student filesharing browser application similar to Dropbox. Here's an email I sent out earlier with details on what we may do.
 
 Framework:
 -Rails: This seemed to be the most popular for us after the previous lecture
