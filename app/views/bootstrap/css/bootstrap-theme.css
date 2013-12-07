@@ -47,6 +47,7 @@
   background-repeat: repeat-x;
   border-color: #dbdbdb;
   border-color: #ccc;
+  margin-top:5px;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe0e0e0', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
