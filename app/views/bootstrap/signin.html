@@ -16,12 +16,7 @@
   </head>
   <body>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <div class="navbar navbar-default" role="navigation">
+     <div class="navbar navbar-default" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -34,49 +29,30 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Documents</a></li>
+            <li><a href="#">Documents</a></li>
             <li><a href="/Users/Cole/Desktop/Dropbox/app/views/bootstrap/shared.html">Shared With Me</a></li>
             <li><a href="#user-search">User Search</a></li>
             <li><a href="#calendar">Calendar</a></li>
             <li><a href="#to-do">To-Do List</a></li>
-            <li><a href="/Users/Cole/Desktop/Dropbox/app/views/bootstrap/signin.html">Sign In</a></li>
+            <li class= "active"><a href="/Users/Cole/Desktop/Dropbox/app/views/bootstrap/signin.html">Sign In</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
 
-  <div class="container">
-  <table class="table">
-    <thead>
-          <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Modified</th>
-            <th>Permissions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>CS 360 Study Guide</td>
-            <td>Folder </td>
-            <td>12/1/2013</td>
-            <td>Read/Write</td>
-          </tr>
-          <tr>
-            <td>Web Server</td>
-            <td>Folder</td>
-            <td>11/28/2013</td>
-            <td>Read/Write</td>
-          </tr>
-          <tr>
-            <td>ENGL 316 Notes</td>
-            <td>File</td>
-            <td>11/14/2013</td>
-            <td>Read Only</td>
-          </tr>
-        </tbody>
-  </table>
-  </div>
+
+    <form role="form">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+
+        <button type="sign-in-button" class="btn btn-default">Sign In</button>
+      </form>
 
 
   </body>
