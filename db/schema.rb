@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131207211237) do
+ActiveRecord::Schema.define(version: 20131207214309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,11 +23,28 @@ ActiveRecord::Schema.define(version: 20131207211237) do
     t.datetime "updated_at"
   end
 
+  create_table "calendar_items", force: true do |t|
+    t.string   "name",       limit: 64
+    t.date     "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "file_items", force: true do |t|
     t.string   "name",           limit: 64
     t.binary   "file"
     t.string   "permissions"
     t.string   "file_extension", limit: 10
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "to_do_items", force: true do |t|
+    t.string   "title",      limit: 64
+    t.string   "details",    limit: 64
+    t.datetime "date"
+    t.string   "resources"
+    t.boolean  "completed",             default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
