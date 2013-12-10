@@ -1,11 +1,28 @@
 Src::Application.routes.draw do
-  get "dropbox/home"
+  get "dropbox/index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
   root "dropbox#index"
+  #root "dropbox#shared"
+
+  get "home" => "dropbox#index"
+  get "home/:id" => "dropbox#index"
+
+  get "shared" => "dropbox#shared" #will be deleted later
+  get "shared/:id" => "dropbox#shared"
+
+  get "user-search" => "dropbox#user-search"
+
+  get "calendar" => "dropbox#calendar"
+  get "calendar/:id" => "dropbox#calendar"
+
+  get "to-do" => "dropbox#to-do"
+
+  get "signin" => "dropbox#signin"
+
+  #get '/home/:id', to: 'dropbox#home', as: 'home'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
