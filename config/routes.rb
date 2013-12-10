@@ -26,6 +26,9 @@ Src::Application.routes.draw do
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
+  get 'shared.html' => 'dropbox#shared'
+  get 'index.html' => 'dropbox#index'
+  get 'signin.html' => 'dropbox#signin'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
