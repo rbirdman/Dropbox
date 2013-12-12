@@ -21,3 +21,6 @@ Read/Write permissions for other users
 Student/Teacher accounts: Teachers need a database for students (to distribute documents), and likely the reverse (students may need to know which teachers to pull documents from)
 Submission history: Keep track of previous versions of the file
 
+
+Automatic deployment via codeship.io
+https://www.codeship.io/projects/bd9cbcb0-44f7-0131-24b0-6eb736dfb67e/status
