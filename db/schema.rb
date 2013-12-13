@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131211061204) do
+ActiveRecord::Schema.define(version: 20131213025000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,7 +60,9 @@ ActiveRecord::Schema.define(version: 20131211061204) do
   add_index "to_do_items", ["user_id"], name: "index_to_do_items_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "privilege",  limit: 10
+    t.string   "netid",          limit: 30, null: false
+    t.string   "remember_token", limit: 30
+    t.string   "privilege",      limit: 10
     t.datetime "created_at"
     t.datetime "updated_at"
   end

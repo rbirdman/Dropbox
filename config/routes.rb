@@ -1,11 +1,11 @@
 Src::Application.routes.draw do
+  resources :sessions, only: [:new, :create, :destroy]
   get "dropbox/index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root "dropbox#index"
-  #root "dropbox#shared"
 
   get "home" => "dropbox#index"
   get "home/:id" => "dropbox#index"
@@ -13,14 +13,19 @@ Src::Application.routes.draw do
   get "shared" => "dropbox#shared" #will be deleted later
   get "shared/:id" => "dropbox#shared"
 
-  get "user-search" => "dropbox#user-search"
+  get "user-search" => "users#user-search"
 
   get "calendar" => "dropbox#calendar"
   get "calendar/:id" => "dropbox#calendar"
 
   get "to-do" => "dropbox#to-do"
 
-  get "signin" => "dropbox#signin"
+  get "signin" => "sessions#new"
+  get "sessions/new" => "sessions#new"
+  delete "signout" => "sessions#destroy"
+  delete "sessions/:id" => "sessions#destroy"
+  post "sessions" => "sessions#create"
+  post "signin" => "sessions#create"
 
   #get '/home/:id', to: 'dropbox#home', as: 'home'
 
@@ -28,7 +33,7 @@ Src::Application.routes.draw do
   #   get 'products/:id' => 'catalog#view'
   get 'shared.html' => 'dropbox#shared'
   get 'index.html' => 'dropbox#index'
-  get 'signin.html' => 'dropbox#signin'
+#  get 'signin.html' => 'sessions#signin'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
