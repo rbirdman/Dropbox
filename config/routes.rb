@@ -13,7 +13,10 @@ Src::Application.routes.draw do
   get "shared" => "dropbox#shared" #will be deleted later
   get "shared/:id" => "dropbox#shared"
 
-  get "user-search" => "users#user-search"
+  get "users" => "users#user-search"
+  get "users/search/:id" => "users#searched"
+  get "users/:id" => "users#show"
+  get "users/:id/edit" => "users#edit"
 
   get "calendar" => "dropbox#calendar"
   get "calendar/:id" => "dropbox#calendar"

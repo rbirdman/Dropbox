@@ -34,6 +34,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy(id)
+    sign_out
+    redirect_to :root
   end
  
   def ry_signin(*args)
