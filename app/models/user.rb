@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
 	has_and_belongs_to_many :CalendarItems
+  has_many :SharedFiles
+  has_many :FileItems , :through => :SharedFiles
+
 	attr_accessor :id
 	before_create :create_remember_token
 
