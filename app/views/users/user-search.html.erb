@@ -39,7 +39,11 @@
             <li class="active"><a href="/user-search">User Search</a></li>
             <li data-no-turbolink><a href="/calendar">Calendar</a></li>
             <li><a href="/to-do">To-Do List</a></li>
-            <li><a href="/signin">Sign In</a></li>
+            <% if !signed_in? %>
+                <li><%= link_to "Sign In", signin_path %></li>
+            <% else %>
+               <li><%= link_to "Sign out", signout_path, method: "delete" %>s
+            <% end %>
             <li><button type="upload-doc-button" class="btn btn-default" style="margin-top:8px;">Upload Document</button></li>
           </ul>
         </div><!--/.nav-collapse -->
