@@ -1,4 +1,4 @@
 class CalendarItem < ActiveRecord::Base
-belongs_to :Users
-has_and_belongs_to_many :Users
+belongs_to :User
+has_and_belongs_to_many :Users, :class_name => "User"
 end
