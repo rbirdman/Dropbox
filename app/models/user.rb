@@ -1,4 +1,4 @@
-class Users < ActiveRecord::Base
+class User < ActiveRecord::Base
 	has_and_belongs_to_many :CalendarItems
 	attr_accessor :id
 	before_create :create_remember_token
@@ -9,17 +9,17 @@ class Users < ActiveRecord::Base
   validates :remember_token, presence: true, length: { maximum: 55 }
   validates :privilege,  presence: true, length: { maximum: 10 }
 
-	def Users.new_remember_token
+	def User.new_remember_token
     	SecureRandom.urlsafe_base64
   	end
 
-  	def Users.encrypt(token)
+  	def User.encrypt(token)
     	Digest::SHA1.hexdigest(token.to_s)
   	end
 
   private
 
     def create_remember_token
-      self.remember_token = Users.encrypt(Users.new_remember_token)
+      self.remember_token = User.encrypt(User.new_remember_token)
     end
 end

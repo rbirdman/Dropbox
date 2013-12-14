@@ -21,9 +21,9 @@ class SessionsController < ApplicationController
     Rails.logger.warn ldap.bind
     if !routey_password.empty? and ldap.bind # true | false | throw timeout
     	Rails.logger.warn "INSIDE!"
-    	user = Users.find_by(netid: routey_id)
+    	user = User.find_by(netid: routey_id)
     	if !user
-    		user = Users.create(netid: routey_id, privilege: "student")
+    		user = User.create(netid: routey_id, privilege: "student")
     	end
     	sign_in user
     	redirect_to :root
