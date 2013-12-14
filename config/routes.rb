@@ -16,7 +16,7 @@ Src::Application.routes.draw do
   get "users" => "users#user-search"
   get "users/search/:id" => "users#searched"
   get "users/:id" => "users#show"
-  get "users/:id/edit" => "users#edit"
+  get "users/edit" => "users#edit"
 
   get "calendar" => "calender_items#calendar"
   get "calendar/:id" => "calender_items#calendar"

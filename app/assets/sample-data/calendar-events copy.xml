@@ -1,6 +1,0 @@
-<data>
-  <event id="1" start_date="2013-12-14 10:00" end_date="2013-12-14 16:00" text="Programming Weekend" details="Get the stuff done"/>
-  <event id="2" start_date="2013-12-13 8:00" end_date="2013-12-13 8:00" text="Just start_date" details="This isn't seen"/>
-  <event id="3" start_date="2013-12-12 9:00" end_date="2013-12-12 9:00" text="Just end_date" details="Bogus"/>
-  <event id="4" start_date="2013-12-11 9:00" end_date="2013-12-11 9:10" text="HELP! ME!" details="Bogus"/>
-</data>
