@@ -34,7 +34,7 @@
           <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Documents", root_path %></li>
           <li class="<%= 'active' if current_page?(shared_path) %>"><%= link_to "Shared With Me", shared_path %></li>
           <li class="<%= 'active' if current_page?(users_path) %>"><%= link_to "User Search", users_path %></li> 
-          <li ata-no-turbolink class="<%= 'active' if current_page?(calendar_path) %>"><%= link_to "Calendar", calendar_path %></li>
+          <li data-no-turbolink class="<%= 'active' if current_page?(calendar_path) %>"><%= link_to "Calendar", calendar_path %></li>
           <li class="<%= 'active' if current_page?("/to-do") %>"><%= link_to "To-Do", "/to-do" %></li>
  <!--         <% if signed_in? %>
  Current User NOT WORKING               <li><%= link_to "Sign out", signout_path, method: "delete" %><li>
