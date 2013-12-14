@@ -18,8 +18,8 @@ Src::Application.routes.draw do
   get "users/:id" => "users#show"
   get "users/:id/edit" => "users#edit"
 
-  get "calendar" => "dropbox#calendar"
-  get "calendar/:id" => "dropbox#calendar"
+  get "calendar" => "calender_items#calendar"
+  get "calendar/:id" => "calender_items#calendar"
 
   get "to-do" => "dropbox#to-do"
 

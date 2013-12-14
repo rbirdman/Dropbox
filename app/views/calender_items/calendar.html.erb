@@ -25,8 +25,10 @@
 		scheduler.config.multi_day = true;
 		scheduler.config.xml_date="%Y-%m-%d %H:%i";
 		scheduler.init('scheduler_here',new Date(),"week");
+		<%= CalenderItemsController.calanderitemsxml %>
 		//scheduler.load("./data/events.xml");
 		scheduler.load("/assets/calendar-events.xml");
+		//scheduler.load("/views/xml/cal-export.xml");
 		
 	}
 	
