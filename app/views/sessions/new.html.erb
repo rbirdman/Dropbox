@@ -1,8 +1,10 @@
 <% provide(:title, "Sign in") %>
-<h1>Sign in</h1>
+<h1>BYU Dropbox</h1>
 
+<center>
 <div class="row">
-  <div class="span6 offset3">
+  <div class="span6">
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
     <%= form_for(:session, url: signin_path) do |f| %>
 
       <%= f.label :netid %>
@@ -11,9 +13,14 @@
       <%= f.label :password %>
       <%= f.password_field :password %>
 
-      <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+      <p>
+        <p>
+          <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+        </p>
+      </p>
     <% end %>
 
     <p>New user? <%= link_to "Sign up now!", "https://y.byu.edu/ae/prod/person/cgi/createNetId.cgi" %></p>
   </div>
 </div>
+</center>
