@@ -18,7 +18,9 @@ class SessionsController < ApplicationController
   	routey_password = params[:session][:password]
     ldap.host = "ldap.byu.edu"
     ldap.auth "uid=#{routey_id},ou=People,o=BYU.edu", routey_password
+    Rails.logger.warn ldap.bind
     if !routey_password.empty? and ldap.bind # true | false | throw timeout
+    	Rails.logger.warn "INSIDE!"
     	user = User.find_by(netid: routey_id)
     	if !user
     		user = User.create(netid: routey_id, privilege: "student")
