@@ -26,8 +26,8 @@
 		scheduler.config.xml_date="%Y-%m-%d %H:%i";
 		scheduler.init('scheduler_here',new Date(),"week");
 		//scheduler.load("./data/events.xml");
-		scheduler.load("/assets/calendar-events.xml");
-		//scheduler.load("/views/xml/cal-export.xml");
+		scheduler.load("calendar.xml");
+		//scheduler.load("/assets/cal-export.xml");
 		
 	}
 	
@@ -54,6 +54,29 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/assets/bootstrap.min.js"></script>
 
+    <div class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">BYU Dropbox</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" a href="/home">BYU Dropbox</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/home">Documents</a></li>
+            <li><a href="/shared">Shared With Me</a></li>
+            <li><a href="/users">User Search</a></li>
+            <li class="active" data-no-turbolink><a href="/calendar">Calendar</a></li>
+            <li><a href="/to-do">To-Do List</a></li>
+            <li><a href="/signin">Sign In</a></li>
+            <li><button type="upload-doc-button" class="btn btn-default" style="margin-top:8px;">Upload Document</button></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
     </div>
 
 	<div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%;'>
