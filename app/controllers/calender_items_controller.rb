@@ -7,8 +7,7 @@ class CalenderItemsController < ApplicationController
 	  xml.instruct! :xml, :encoding => "ASCII"
 	  puts xml.data {
 		  citems.each do |c|
-			puts xml.event("id"=>c.id, "start_date"=>c.start_datetime,
-					"end_date"=>c.end_datetime, "text"=>c.name "details"=>"")
+			puts xml.event("id"=>c.id, "start_date"=>c.start_datetime, "end_date"=>c.end_datetime, "text"=>c.name, "details"=>"")
 		  end
 	  }
 	  file.close
