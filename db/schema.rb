@@ -11,28 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131213025000) do
+ActiveRecord::Schema.define(version: 20131214175644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "calendar_items", force: true do |t|
-    t.string   "name",       limit: 64
-    t.date     "date"
+    t.string   "name",           limit: 64
+    t.datetime "start_datetime"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.datetime "end_datetime"
   end
 
   add_index "calendar_items", ["user_id"], name: "index_calendar_items_on_user_id", using: :btree
 
-  create_table "calendar_items_viewers", force: true do |t|
-    t.integer "calender_item_id"
+  create_table "calendar_items_users", force: true do |t|
+    t.integer "calendar_item_id"
     t.integer "user_id"
   end
 
-  add_index "calendar_items_viewers", ["calender_item_id"], name: "index_calendar_items_viewers_on_calender_item_id", using: :btree
-  add_index "calendar_items_viewers", ["user_id"], name: "index_calendar_items_viewers_on_user_id", using: :btree
+  add_index "calendar_items_users", ["calendar_item_id"], name: "index_calendar_items_users_on_calendar_item_id", using: :btree
+  add_index "calendar_items_users", ["user_id"], name: "index_calendar_items_users_on_user_id", using: :btree
 
   create_table "file_items", force: true do |t|
     t.string   "name",           limit: 64
@@ -60,12 +61,14 @@ ActiveRecord::Schema.define(version: 20131213025000) do
   add_index "to_do_items", ["user_id"], name: "index_to_do_items_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "netid",          limit: 30, null: false
-    t.string   "remember_token", limit: 30
+    t.string   "netid",          limit: 30
+    t.string   "remember_token", limit: 60
     t.string   "privilege",      limit: 10
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "users", ["netid"], name: "UniqueNetId", unique: true, using: :btree
 
   create_table "views", force: true do |t|
     t.datetime "created_at"
