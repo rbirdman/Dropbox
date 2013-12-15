@@ -29,6 +29,19 @@ class Folder
   end
 end
 
+class URLLink
+  def initialize(url, isLink)
+    @url = url
+    @isLink = isLink
+  end
+  def url
+    @url
+  end
+  def isLink
+    @isLink
+  end
+end
+
 class ToDoItem
   def initialize(titl, det, due, res, comp)
     @title = titl
@@ -58,8 +71,8 @@ end
 def getTodoItems(dirname)
   tuple = ["www.ourteamwebsite.com", "www.youtube.com/watch?v=dQw4w9WgXcQ"]
   [ToDoItem.new("CS 360 Reading","pgs. 100-135","11/20/13 3:00pm",[], false),
-     ToDoItem.new("CS 360 Team Meeting","Discuss Project", "3:30 pm", ["www.ourteamwebsite.com", "www.youtube.com/watch?v=dQw4w9WgXcQ"], true),
-     ToDoItem.new("ENGL 316 Write Essay", "5 pages", "11/19/13 12:00am",["How to Write.pdf"], true)]
+     ToDoItem.new("CS 360 Team Meeting","Discuss Project", "3:30 pm", [URLLink.new("www.ourteamwebsite.com",false), URLLink.new("www.youtube.com/watch?v=dQw4w9WgXcQ", true)], true),
+     ToDoItem.new("ENGL 316 Write Essay", "5 pages", "11/19/13 12:00am",[URLLink.new("How to Write.pdf", false)], true)]
 end
 
 def searchUser(search_val)
