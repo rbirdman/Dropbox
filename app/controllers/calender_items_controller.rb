@@ -2,6 +2,8 @@ require 'builder'
 
 class CalenderItemsController < ApplicationController
 	def calendar
-		@citems=CalendarItem.where("user_id = ?", params[:id])
+		cidval=params[:id]
+		cidval||=-1
+		@citems=CalendarItem.where("user_id = ?", cidval)
 	end
 end
