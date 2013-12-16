@@ -76,9 +76,10 @@ def getTodoItems(dirname)
 end
 
 def searchUser(search_val)
-  ["rbirdman", "Charles Xavier", "Magneto", "Chris Rock",
-   "Clark Kent", "Bruce Wayne", "Wolverine", "Aurora Monroe",
-    "Jean Grey"]
+  if search_val.include? '*'
+    search_val.gsub!('*', '%')
+  end
+  CalendarItem.where("netid LIKE ?", search_val)
 end
   
   def getFoldersFromDirectory(dir)
