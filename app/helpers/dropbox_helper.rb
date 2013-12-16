@@ -79,7 +79,7 @@ def searchUser(search_val)
   if search_val.include? '*'
     search_val.gsub!('*', '%')
   end
-  CalendarItem.where("netid LIKE ?", search_val)
+  Users.where("netid LIKE ?", search_val)
 end
   
   def getFoldersFromDirectory(dir)
