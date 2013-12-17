@@ -17,6 +17,7 @@ module SessionsHelper
   end
 
   def signed_in?
+    Rails.logger.warn current_user
     !current_user.nil?
   end
 

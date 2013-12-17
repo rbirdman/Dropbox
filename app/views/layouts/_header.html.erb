@@ -16,6 +16,7 @@
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/assets/bootstrap.min.js"></script>
+          <%= current_user.name %>
 
     <div class="navbar navbar-default" role="navigation">
       <div class="container">
@@ -36,12 +37,12 @@
           <li class="<%= 'active' if current_page?(users_path) %>"><%= link_to "User Search", users_path %></li> 
           <li data-no-turbolink class="<%= 'active' if current_page?(calendar_path) %>"><%= link_to "Calendar", calendar_path %></li>
           <li class="<%= 'active' if current_page?("/to-do") %>"><%= link_to "To-Do", "/to-do" %></li>
- <!--         <% if signed_in? %>
- Current User NOT WORKING               <li><%= link_to "Sign out", signout_path, method: "delete" %><li>
-              <% else %>
--->             <li><%= link_to "Sign in", signin_path %></li>
-<!--          <% end %>
--->
+          <% if signed_in? %>
+              <li><%= link_to "Sign out", signout_path, method: "delete" %><li>
+          <% else %>
+             <li><%= link_to "Sign in", signin_path %></li>
+          <% end %>
+
           </ul>
         </div><!--/.nav-collapse -->
       </div>
