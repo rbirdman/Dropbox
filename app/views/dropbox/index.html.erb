@@ -1,8 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BYU Dropbox</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+
+    <link href="/assets/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/bootstrap-theme.min.css" rel="stylesheet">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+
+    <script src="/assets/bootstrap.min.js"></script>
+
+
+    <div class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">BYU Dropbox</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand">BYU Dropbox</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/home">Documents</a></li>
+            <li><a href="/shared">Shared With Me</a></li>
+            <li><a href="/users">User Search</a></li>
+            <li data-no-turbolink><a href="/calendar">Calendar</a></li>
+            <li><a href="/to-do">To-Do List</a></li>
+            <li><a href="/signin">Sign In</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+  <% dirname = "/home/" %>
   <ol class="breadcrumb">
-       <li><a href="#">rbirdman</a></li>
-       <li><a href="#">CS 104</a></li>
-       <li class="active">Projects</li>
+       <% if params[:id] == nil %>
+         <% params[:id] = "guest" %>
+       <% end %>
+       <% dirname = dirname + params[:id] + "/" %>
+       <li><a href=<%= dirname %>><%= params[:id] %></a></li>
+
+       <% dirs = params[:dirs] %>
+         <% if dirs != nil %>
+         <% dirs.split('/').each do |dir| %>
+           <% dirname = dirname + dir + "/" %>
+           <li><a href=<%= dirname %>><%= dir %></a></li>
+         <% end %>
+       <% end %>
   </ol>
+
+  <h3 style="margin-left: 147px">Upload File</h3>
+  <input type = "file" name = "file_to_upload" size = 40 style="margin-left: 147px">
 
   <div class="container">
   <table class="table">
@@ -14,6 +78,22 @@
             <th>Permissions</th>
           </tr>
         </thead>
+
+        <tbody>
+          <% getFoldersFromDirectory(params[:dirs]).each do |file| %>
+              <tr>
+                <% if file.type == "folder" %>
+                  <td><a href=<%= dirname + file.name %>><%= file.name -%></a></td>
+                <% else %>
+                  <td><%= file.name -%></td>
+                <% end %>
+                <td><%= file.type -%></td>
+                <td><%= file.modified -%></td>
+                <td><%= file.permissions -%></td>
+              </tr>
+          <% end %>
+        </tbody>
+
         <!--
         <tbody>
           <tr>
@@ -38,3 +118,9 @@
         -->
   </table>
   </div>
+
+
+
+
+  </body>
+</html>

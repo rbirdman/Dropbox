@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131214213639) do
+ActiveRecord::Schema.define(version: 20131217222330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,9 +43,21 @@ ActiveRecord::Schema.define(version: 20131214213639) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "path"
   end
 
   add_index "file_items", ["user_id"], name: "index_file_items_on_user_id", using: :btree
+
+  create_table "folder_items", force: true do |t|
+    t.string   "permissions"
+    t.string   "path"
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "folder_items", ["user_id"], name: "index_folder_items_on_user_id", using: :btree
 
   create_table "shared_files", force: true do |t|
     t.integer  "file_item_id"
@@ -76,6 +88,7 @@ ActiveRecord::Schema.define(version: 20131214213639) do
     t.string   "privilege",      limit: 10
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "root_directory"
   end
 
   add_index "users", ["netid"], name: "UniqueNetId", unique: true, using: :btree

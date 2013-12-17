@@ -9,14 +9,15 @@ Src::Application.routes.draw do
 
   get "home" => "dropbox#index"
   get "home/:id" => "dropbox#index"
+  get "home/:id/*dirs" => "dropbox#index"
 
   get "shared" => "dropbox#shared" #will be deleted later
   get "shared/:id" => "dropbox#shared"
 
   get "users" => "users#user-search"
-  get "users/search/:id" => "users#searched"
+  get "users/search/" => "users#searched"
   get "users/:id" => "users#show"
-  get "users/edit" => "users#edit"
+  get "users/:id/edit" => "users#edit"
 
   get "calendar" => "calender_items#calendar"
   get "calendar/:id" => "calender_items#calendar"
