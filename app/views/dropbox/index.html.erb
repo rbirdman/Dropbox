@@ -52,6 +52,9 @@
 
   <% dirname = "/home/" %>
   <ol class="breadcrumb">
+       <% if params[:id] == nil %>
+         <% params[:id] = "guest" %>
+       <% end %>
        <% dirname = dirname + params[:id] + "/" %>
        <li><a href=<%= dirname %>><%= params[:id] %></a></li>
        
