@@ -62,15 +62,11 @@
               <tr>
                 <td><%= item.title -%></td>
                 <td><%= item.details -%></td>
-                <td><%= item.due_date -%></td>
+                <td><%= item.date -%></td>
                 
                 <td>
-                <% item.resources.each do |resource| -%>
-                	<% if resource.isLink %>
-                	  <a href="http://<%= resource.url -%>"><%= resource.url -%></a><br>
-                	<% else %>
-                		<%= resource.url -%><br>
-                	<% end %>
+                <% if !(item.resources.nil? || item.resources.empty?) -%>
+                	  <a href="http://<%= item.resources -%>"><%= item.resources -%></a><br>
                 <% end %>
                 </td>
                 
