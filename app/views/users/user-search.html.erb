@@ -45,39 +45,16 @@
       </div>
     </div>
 
-  <form class="form-search">
+  <form class="form-search" action="/users/search/" method="GET">
     <div class="input-append" align="center">
-        <input type="text" class="span2 search-query">
+        <input type="text" class="span2 search-query" name="id">
         <button type="submit" class="btn">Search</button>
     </div>
   </form>
 
   <div class="container">
-  <table class="table">
-  		<tbody align="center">
-  		<% count = 0 %>
-  		<tr>
-  		<% searchUser("*b*").each do |result| %>
-  			<% if count == 4 %>
-  			</tr>
-  			<tr>
-  			<% count = 0 %>
-  			<% end %>
-  			<td><a href="users/:<%= result -%>"><%= result -%></a></td>
-  			<% count = count + 1 %>
-  		<% end %>
-        <% while count < 4%>
-        <td></td>
-        <% count = count + 1 %>
-        <% end %>
-        </tr>
-        
-        </tbody>
-  </table>
+  
   </div>
-
-
-
-
+  
   </body>
 </html>
