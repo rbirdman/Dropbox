@@ -76,7 +76,7 @@
         </thead>
         
         <tbody>
-          <% getFoldersFromDirectory("/").each do |file| %>
+          <% getFoldersFromDirectory(params[:dirs]).each do |file| %>
               <tr>
                 <% if file.type == "folder" %>
                   <td><a href=<%= dirname + file.name %>><%= file.name -%></a></td>
