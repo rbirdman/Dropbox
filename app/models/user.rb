@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :CalendarItems
 	has_and_belongs_to_many :SharedCalendarItems,:class_name => "CalendarItem"
   has_many :SharedFiles
+  has_many :FolderItems
   has_many :FileItems , :through => :SharedFiles
 
 	attr_accessor :id
