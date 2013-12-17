@@ -77,9 +77,9 @@ end
 
 def searchUser(search_val)
   if search_val.include? '*'
-    search_val.gsub!('*', '%')
+    search_val=search_val.gsub!('*', '%')
   end
-  Users.where("netid LIKE ?", search_val)
+  User.where("netid LIKE ?", search_val).pluck(:netid)
 end
   
   def getFoldersFromDirectory(dir)
