@@ -50,10 +50,21 @@
       </div>
     </div>
 
+  <% dirname = "/home/" %>
   <ol class="breadcrumb">
-       <li><a href="#">rbirdman</a></li>
-       <li><a href="#">CS 104</a></li>
-       <li class="active">Projects</li>
+       <% if params[:id] == nil %>
+         <% params[:id] = "guest" %>
+       <% end %>
+       <% dirname = dirname + params[:id] + "/" %>
+       <li><a href=<%= dirname %>><%= params[:id] %></a></li>
+       
+       <% dirs = params[:dirs] %>
+         <% if dirs != nil %>
+         <% dirs.split('/').each do |dir| %>
+           <% dirname = dirname + dir + "/" %>
+           <li><a href=<%= dirname %>><%= dir %></a></li>
+         <% end %>
+       <% end %>
   </ol>
 
   <div class="container">
@@ -66,6 +77,22 @@
             <th>Permissions</th>
           </tr>
         </thead>
+        
+        <tbody>
+          <% getFoldersFromDirectory(params[:dirs]).each do |file| %>
+              <tr>
+                <% if file.type == "folder" %>
+                  <td><a href=<%= dirname + file.name %>><%= file.name -%></a></td>
+                <% else %>
+                  <td><%= file.name -%></td>
+                <% end %>
+                <td><%= file.type -%></td>
+                <td><%= file.modified -%></td>
+                <td><%= file.permissions -%></td>
+              </tr>
+          <% end %>
+        </tbody>
+        
         <!--
         <tbody>
           <tr>
