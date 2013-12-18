@@ -26,4 +26,9 @@ module SessionsHelper
     cookies.delete(:remember_token)
   end  
 
+  def self.included m
+    return unless m < ActionController::Base
+    m.helper_method :current_user, :signed_in? # , :any_other_helper_methods
+  end
+
 end
