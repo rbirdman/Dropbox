@@ -1,7 +1,18 @@
+  <% dirname = "/shared/" %>
   <ol class="breadcrumb">
-       <li><a href="#">Dropbox Group</a></li>
-       <li><a href="#">Dropbox folder</a></li>
-       <li class="active">src</li>
+       <% if params[:id] == nil %>
+         <% params[:id] = "guest" %>
+       <% end %>
+       <% dirname = dirname + params[:id] + "/" %>
+       <li><a href=<%= dirname %>><%= params[:id] %></a></li>
+
+       <% dirs = params[:dirs] %>
+         <% if dirs != nil %>
+         <% dirs.split('/').each do |dir| %>
+           <% dirname = dirname + dir + "/" %>
+           <li><a href=<%= dirname %>><%= dir %></a></li>
+         <% end %>
+       <% end %>
   </ol>
 
   <h3 style="margin-left: 147px">Share File</h3>
@@ -20,7 +31,11 @@
         <tbody>
           <% getFoldersFromDirectory("/").each do |file| %>
               <tr>
-                <td><%= file.name -%></td>
+                <% if file.type == "folder" %>
+                  <td><a href=<%= dirname + file.name %>><%= file.name -%></a></td>
+                <% else %>
+                  <td><a href=""><%= file.name -%></a></td>
+                <% end %>
                 <td><%= file.type -%></td>
                 <td><%= file.modified -%></td>
                 <td><%= file.permissions -%></td>
