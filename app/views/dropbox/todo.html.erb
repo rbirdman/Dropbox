@@ -12,7 +12,7 @@
 	function submitItem() {
 		title = document.getElementById("title").value;
 		details = document.getElementById("details").value;
-		due_date = document.getElementById("due_date").value;
+		due_date = document.getElementById("duedate").value;
 		resources = document.getElementById("resources").value;
 		
 		if(title == "")
@@ -24,9 +24,13 @@
 		else if(resources == "")
 			alert("Insert a value for Resources");
 		else {
+			//$.post("/to-do", {authenticity_token: '<%= form_authenticity_token %>',
+			//					title: title, details: details,
+			//				duedate: due_date, resources: resources})
+		
 			document.getElementById("title").value = "";
 			document.getElementById("details").value = "";
-			document.getElementById("due_date").value = "";
+			document.getElementById("duedate").value = "";
 			document.getElementById("resources").value = "";
 		}
 	}
@@ -37,7 +41,8 @@
   <div class="container">
   
   <input type="button" class="btn btn-default" style="margin-top:8px;" id="button" value="Add item" onclick="createButtonClicked(this)"></input>
-	<div id="inputForm" name="inputForm">
+	<form id="inputForm" name="inputForm" action="/to-do" method="post">
+		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"/>
 		<table width=500>
 		<tr>
 			<th><%= label_tag(:title, "Title") %></th>
@@ -46,12 +51,12 @@
 			<th><input id="details" name="details" type="text" value=""/></th>
 		</tr>
 		<tr>
-			<th><%= label_tag(:due_date, "Due Date") %></th>
-			<th><input id="due_date" name="due_date" type="text" value=""/></th>
+			<th><%= label_tag(:duedate, "Due Date") %></th>
+			<th><input id="duedate" name="duedate" type="text" value=""/></th>
 			<th><%= label_tag(:Resources, "Resources") %></th>
 			<th><input id="resources" name="resources" type="text" value=""/></th>
 		</table>
-		<button type="upload-doc-button" class="btn btn-default" style="margin-top:8px;" onclick="submitItem()">Submit</button>
+		<button type="upload-doc-button" class="btn btn-default" style="margin-top:8px;">Submit</button>
 	</div>
   
   <table class="table">
