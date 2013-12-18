@@ -35,7 +35,7 @@
                 <% if file.type == "folder" %>
                   <td><a href=<%= dirname + file.name %>><%= file.name -%></a></td>
                 <% else %>
-                  <td><%= file.name -%></td>
+                  <td><a href=""><%= file.name -%></a></td>
                 <% end %>
                 <td><%= file.type -%></td>
                 <td><%= file.modified -%></td>
@@ -43,28 +43,5 @@
               </tr>
           <% end %>
         </tbody>
-
-        <!--
-        <tbody>
-          <tr>
-            <td>CS 360 Study Guide</td>
-            <td>Folder </td>
-            <td>12/1/2013</td>
-            <td>Read/Write</td>
-          </tr>
-          <tr>
-            <td>Web Server</td>
-            <td>Folder</td>
-            <td>11/28/2013</td>
-            <td>Read/Write</td>
-          </tr>
-          <tr>
-            <td>ENGL 316 Notes</td>
-            <td>File</td>
-            <td>11/14/2013</td>
-            <td>Read Only</td>
-          </tr>
-        </tbody>
-        -->
   </table>
   </div>
