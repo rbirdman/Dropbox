@@ -55,6 +55,13 @@
 			<th><input id="duedate" name="duedate" type="text" value=""/></th>
 			<th><%= label_tag(:Resources, "Resources") %></th>
 			<th><input id="resources" name="resources" type="text" value=""/></th>
+		</tr>
+		<tr>
+			<th></th>
+			<th></th>
+			<th><%= label_tag(:AsLink, "Resource as link") %></th>
+			<th><input type="checkbox" name="link" value="link"></th>
+		</tr>
 		</table>
 		<button type="upload-doc-button" class="btn btn-default" style="margin-top:8px;">Submit</button>
 	</div>

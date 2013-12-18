@@ -6,29 +6,15 @@ class DropboxController < ApplicationController
     details = params[:details]
     due_date = params[:duedate]
     resources = params[:resources]
+    resourceAsLink = params[:link] || false
     
     Rails.logger.debug "Creating ToDo"
     
-    if title != nil
- 	   Rails.logger.debug "Title: " + title
-    else
-      Rails.logger.debug "Nil variable: title"
-    end
-    if details != nil
-      Rails.logger.debug "Details: " + details
-    else
-      Rails.logger.debug "Nil variable: details"
-    end
-    if due_date != nil
-      Rails.logger.debug "Due Date: " + due_date
-    else
-      Rails.logger.debug "Nil variable: due_date"
-    end
-    if resources != nil
-      Rails.logger.debug "Resources: " + resources
-    else
-      Rails.logger.debug "Nil variable: resources"
-    end
+    Rails.logger.debug "Title: " + (title == nil ? "nil" : title)
+    Rails.logger.debug "Details: " + (details == nil ? "nil" : details)
+    Rails.logger.debug "Due Date: " + (due_date == nil ? "nil" : due_date)
+    Rails.logger.debug "Resources: " + (resources == nil ? "nil" : resources)
+    Rails.logger.debug "link: " + (resourceAsLink == false ? "false" : "true")
     
     if title == nil || details == nil || due_date == nil || resources == nil
       Rails.logger.debug "Deny List"
