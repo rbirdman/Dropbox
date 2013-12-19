@@ -12,6 +12,8 @@ Src::Application.routes.draw do
   get "home/:id" => "dropbox#index"
   get "home/:id/*dirs" => "dropbox#index"
 
+  get "/file.file" => "dropbox#downloadFile"
+
   post "dropbox/index" => "dropbox#uploadFile"
 
 

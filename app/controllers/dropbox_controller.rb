@@ -46,4 +46,8 @@ def uploadFile
    redirect_to :root
 end
 
+def downloadFile
+
+end
+
 end
