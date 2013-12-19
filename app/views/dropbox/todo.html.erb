@@ -34,6 +34,9 @@
 			document.getElementById("resources").value = "";
 		}
 	}
+	function checkBoxChecked(box) {
+		alert("Need to save this change to database: " + box.name);
+	}
 	
 </script>
 
@@ -96,9 +99,9 @@
                 
                 <td><label>
                 <% if item.completed %>
-                  <input type="checkbox" checked>
+                  <input type="checkbox" onclick="checkBoxChecked(this)" name="Unique Checkbox Identifier" checked>
                 <% else %>
-                  <input type="checkbox">
+                  <input type="checkbox" onclick="checkBoxChecked(this)" name="Unique Checkbox Identifier">
                 <% end %>
                 </label></td>
                 
