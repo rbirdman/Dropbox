@@ -7,7 +7,7 @@ class DropboxController < ApplicationController
       user = current_user.netid
     end
     title = params[:title]
-    details = params[:details]
+    details = params[:details] || ""
     due_date = params[:duedate]
     resources = params[:resources] || ""
     resourceAsLink = params[:link] || false
@@ -21,7 +21,7 @@ class DropboxController < ApplicationController
     Rails.logger.debug "Resources: " + (resources == nil ? "nil" : resources)
     Rails.logger.debug "link: " + (resourceAsLink == false ? "false" : "true")
 
-    if user == nil || title == nil || details == nil || due_date == nil
+    if user == nil || title == nil || due_date == nil
       Rails.logger.debug "Deny List"
     else
       Rails.logger.debug "Accept List"

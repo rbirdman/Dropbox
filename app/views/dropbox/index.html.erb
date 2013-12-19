@@ -59,7 +59,11 @@
         <% if current_user != nil %>
         <% getFileItems().each do |file| %>
         <tr>
-         <td><a href=""><%= file.name -%></a></td>
+         <td><% if file.file_extension == "folder" %>
+                  <a href=<%= dirname + file.name %>><%= file.name -%></a>
+                <% else %>
+                  <a href=""><%= file.name -%></a>
+                <% end %></td>
                 <td><%= file.file_extension -%></td>
                 <td><%= file.updated_at -%></td>
                 <td><%= file.permissions -%></td>
