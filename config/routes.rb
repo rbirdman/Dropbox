@@ -1,6 +1,7 @@
 Src::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   get "dropbox/index"
+  post "dropbox/uploadFile"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -10,6 +11,12 @@ Src::Application.routes.draw do
   get "home" => "dropbox#index"
   get "home/:id" => "dropbox#index"
   get "home/:id/*dirs" => "dropbox#index"
+
+  post "dropbox/index" => "dropbox#uploadFile"
+
+
+  post "shared" => "dropbox#shared"
+
 
   get "shared" => "dropbox#shared" #will be deleted later
   get "shared/:id" => "dropbox#shared"

@@ -7,14 +7,14 @@ class Folder
     @modified = mod
     @permissions = perm
   end
-  
+
   def print()
     puts @name
     puts @type
     puts @modified
     puts @permissions
   end
-  
+
   def name
     @name
   end
@@ -50,7 +50,7 @@ class ToDoItem
     @resources = res
     @completed = comp
   end
-  
+
   def title
     @title
   end
@@ -68,6 +68,10 @@ class ToDoItem
   end
 end
 
+def uploadFile
+  poop
+end
+
 def getTodoItems(dirname)
   tuple = ["www.ourteamwebsite.com", "www.youtube.com/watch?v=dQw4w9WgXcQ"]
   [ToDoItem.new("CS 360 Reading","pgs. 100-135","11/20/13 3:00pm",[], false),
@@ -81,11 +85,11 @@ def searchUser(search_val)
   end
   User.where("netid LIKE ?", search_val).pluck(:netid)
 end
-  
+
   def getFoldersFromDirectory(dir)
     [Folder.new("bill.pdf","document","Today","public"),
      Folder.new("john.pdf","document", "Tomorrow","shared"),
      Folder.new("src/", "folder", "A week ago","private")]
   end
-  
+
 end

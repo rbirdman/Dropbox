@@ -44,6 +44,7 @@
             <li data-no-turbolink><a href="/calendar">Calendar</a></li>
             <li><a href="/to-do">To-Do List</a></li>
             <li><a href="/signin">Sign In</a></li>
+            <li><!--<button type="upload-doc-button" class="btn btn-default" style="margin-top:8px;" input>Upload Document</button>--></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -65,8 +66,19 @@
        <% end %>
   </ol>
 
-  <h3 style="margin-left: 147px">Upload File</h3>
-  <input type = "file" name = "file_to_upload" size = 40 style="margin-left: 147px">
+
+  <div style = "margin-left: 40px">
+  <h3>File Upload</h3>
+    <%= form_for :file_upload, :html => {:multipart => true} do |f| %>
+    <div style="margin-bottom: 12px">
+    <%= f.file_field :my_file %>
+    </div>
+    <div style="margin-bottom: 12px">
+    <%= f.submit "Upload" %>
+    </div>
+  <% end %>
+  </div>
+
 
   <div class="container">
   <table class="table">
