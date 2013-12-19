@@ -29,7 +29,7 @@ class Folder
   end
 end
 
-def getTodoItems(dirname)
+def getTodoItems()
 	tidval=params[:id]
 	tidval||=7
 	ToDoItem.where("user_id = ?", tidval)
