@@ -32,6 +32,7 @@ Src::Application.routes.draw do
   get "calendar" => "calender_items#calendar"
   get "calendar/:id" => "calender_items#calendar"
   post "calendar" => "calender_items#saveEvent"
+  post "calendar/delete" => "calender_items#deleteEvent"
 
 
   get "to-do" => "dropbox#todo"

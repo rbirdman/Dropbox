@@ -20,6 +20,7 @@
 		//scheduler.load("./data/events.xml");
 		scheduler.load("calendar.xml");
 		//scheduler.load("/assets/cal-export.xml");
+		
 		scheduler.attachEvent("onEventSave",function(id,data,flag){
 			text = data.text;
 			start = data.start_date
@@ -30,7 +31,12 @@
 								event_end: end})
 			
 			return true;
-		})
+		});
+		
+		scheduler.attachEvent("onEventDeleted", function(id){
+			$.post("/calendar/delete", {authenticity_token: '<%= form_authenticity_token %>',
+								event_id: id})
+		});
 	}
 
 	function show_minical(){
