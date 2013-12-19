@@ -30,9 +30,19 @@ class Folder
 end
 
 def getTodoItems()
-	tidval=params[:id]
-	tidval||=7
-	ToDoItem.where("user_id = ?", tidval)
+	if current_user != nil
+		user = User.where("netid = ?", current_user.netid)
+		if user != nil
+			Rails.logger.debug "Methods: "
+			user = user[0]
+			user.methods.each do |method|
+				Rails.logger.debug method
+			end
+			
+			return ToDoItem.where("user_id = ?", user.id)
+		end
+	end
+	[]
 end
 
 def searchUser(search_val)

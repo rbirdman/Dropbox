@@ -2,7 +2,10 @@ class DropboxController < ApplicationController
   def home
   end
   def todo
-    user = params[:user] || 7
+    user = nil
+    if current_user
+      user = current_user.netid
+    end
     title = params[:title]
     details = params[:details]
     due_date = params[:duedate]
@@ -22,7 +25,10 @@ class DropboxController < ApplicationController
       Rails.logger.debug "Deny List"
     else
       Rails.logger.debug "Accept List"
-      ToDoItem.create(:user_id => user, :title => title, :details => details,
+      user = User.where("netid = ?", user)
+      user = user[0]
+      Rails.logger.debug "id: " + user.id.to_s()
+      ToDoItem.create(:user_id => user.id, :title => title, :details => details,
       		:date => due_date, :resources => resources, :completed => false)
       		#:date => due_date, :resources => resources, :link => resourceAsLink, :completed => false)
       
