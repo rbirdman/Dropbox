@@ -5,10 +5,10 @@ class User < ActiveRecord::Base
   has_many :FolderItems
   has_many :FileItems , :through => :SharedFiles
 
-	attr_accessor :id
+	#attr_accessor :id, :remember_token
 	before_create :create_remember_token
 
-	self.primary_key = :id
+  self.primary_key = :id
 
 	validates :netid,  presence: true, length: { maximum: 30 }
   validates :remember_token, presence: true, length: { maximum: 55 }
