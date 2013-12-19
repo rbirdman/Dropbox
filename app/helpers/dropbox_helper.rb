@@ -44,7 +44,7 @@ def getTodoItems()
 			user.methods.each do |method|
 				Rails.logger.debug method
 			end
-			
+
 			return ToDoItem.where("user_id = ?", user.id)
 		end
 	end

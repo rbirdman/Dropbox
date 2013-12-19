@@ -36,15 +36,10 @@ class DropboxController < ApplicationController
 
   end
 
-def file_upload
-  require 'fileutils'
-end
-
 def uploadFile
    require 'fileutils'
-   @original_filename = params[:my_file]
-   FileItem.create(:name => params[:name], :file => params[:my_file], :permissions => "none", :file_extension => ".txt",
-                          :created_at => nil, :updated_at => nil, :user_id => 12, :path => "the_path");
+   FileItem.create(:name => params[:file_upload][:my_file].original_filename, :file => params[:my_file], :permissions => "read/write",
+    :file_extension => params[:file_upload][:my_file].content_type, :created_at => nil, :updated_at => nil, :user_id => 12, :path => "the_path");
 
 
    redirect_to :root
