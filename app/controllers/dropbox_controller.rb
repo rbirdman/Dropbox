@@ -7,7 +7,7 @@ class DropboxController < ApplicationController
       user = current_user.netid
     end
     title = params[:title]
-    details = params[:details]
+    details = params[:details] || ""
     due_date = params[:duedate]
     resources = params[:resources] || ""
     resourceAsLink = params[:link] || false
