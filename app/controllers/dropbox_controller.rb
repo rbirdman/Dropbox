@@ -37,10 +37,11 @@ class DropboxController < ApplicationController
   end
 
 def uploadFile
+  if current_user != nil
    require 'fileutils'
    FileItem.create(:name => params[:file_upload][:my_file].original_filename, :file => params[:my_file], :permissions => "read/write",
-    :file_extension => params[:file_upload][:my_file].content_type, :created_at => nil, :updated_at => nil, :user_id => 12, :path => "the_path");
-
+    :file_extension => params[:file_upload][:my_file].content_type, :created_at => nil, :updated_at => nil, :user_id => current_user.id, :path => "the_path");
+  end
 
    redirect_to :root
 end

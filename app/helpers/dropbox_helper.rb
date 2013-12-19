@@ -30,9 +30,9 @@ class Folder
 end
 
 def getFileItems()
-  tidval=params[:id]
-  tidval||=12
-  FileItem.where("user_id = ?", tidval)
+if current_user != nil
+  FileItem.where("user_id = ?", current_user.id)
+end
 end
 
 def getTodoItems()

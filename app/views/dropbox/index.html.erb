@@ -56,7 +56,7 @@
               </tr>
           <% end %>
         -->
-
+        <% if current_user != nil %>
         <% getFileItems().each do |file| %>
         <tr>
          <td><a href=""><%= file.name -%></a></td>
@@ -64,6 +64,7 @@
                 <td><%= file.updated_at -%></td>
                 <td><%= file.permissions -%></td>
               </tr>
+              <% end %>
           <% end %>
         </tbody>
   </table>
