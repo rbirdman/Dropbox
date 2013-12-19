@@ -59,7 +59,7 @@
 
         <% getFileItems().each do |file| %>
         <tr>
-         <td><% if file.type == "folder" %>
+         <td><% if file.file_extension == "folder" %>
                   <td><a href=<%= dirname + file.name %>><%= file.name -%></a></td>
                 <% else %>
                   <td><a href=""><%= file.name -%></a></td>
