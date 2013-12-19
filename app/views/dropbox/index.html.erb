@@ -60,9 +60,9 @@
         <% getFileItems().each do |file| %>
         <tr>
          <td><% if file.file_extension == "folder" %>
-                  <td><a href=<%= dirname + file.name %>><%= file.name -%></a></td>
+                  <a href=<%= dirname + file.name %>><%= file.name -%></a>
                 <% else %>
-                  <td><a href=""><%= file.name -%></a></td>
+                  <a href=""><%= file.name -%></a>
                 <% end %></td>
                 <td><%= file.file_extension -%></td>
                 <td><%= file.updated_at -%></td>
