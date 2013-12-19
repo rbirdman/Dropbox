@@ -20,7 +20,20 @@
 		//scheduler.load("./data/events.xml");
 		scheduler.load("calendar.xml");
 		//scheduler.load("/assets/cal-export.xml");
-		
+		scheduler.attachEvent("onEventSave",function(id,data,flag){
+			alert("Saving event");
+			alert(id);
+			
+			text = data.text;
+			start = data.start_date
+			end = data.end_date
+			
+			$.post("/calendar", {authenticity_token: '<%= form_authenticity_token %>',
+								event_id: id, event_text: text, event_start: start,
+								event_end: end})
+			
+			return true;
+		})
 	}
 
 	function show_minical(){
