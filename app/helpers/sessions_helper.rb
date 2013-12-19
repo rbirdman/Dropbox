@@ -17,6 +17,7 @@ module SessionsHelper
   end
 
   def signed_in?
+    Rails.logger.warn current_user
     !current_user.nil?
   end
 
@@ -24,5 +25,10 @@ module SessionsHelper
     self.current_user = nil
     cookies.delete(:remember_token)
   end  
+
+  def self.included m
+    return unless m < ActionController::Base
+    m.helper_method :current_user, :signed_in? # , :any_other_helper_methods
+  end
 
 end

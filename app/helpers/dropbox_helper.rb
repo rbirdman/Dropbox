@@ -29,54 +29,16 @@ class Folder
   end
 end
 
-class URLLink
-  def initialize(url, isLink)
-    @url = url
-    @isLink = isLink
-  end
-  def url
-    @url
-  end
-  def isLink
-    @isLink
-  end
+def getFileItems()
+  tidval=params[:id]
+  tidval||=12
+  FileItem.where("user_id = ?", tidval)
 end
 
-class ToDoItem
-  def initialize(titl, det, due, res, comp)
-    @title = titl
-    @details = det
-    @due_date = due
-    @resources = res
-    @completed = comp
-  end
-
-  def title
-    @title
-  end
-  def details
-    @details
-  end
-  def due_date
-    @due_date
-  end
-  def resources
-    @resources
-  end
-  def completed
-    @completed
-  end
-end
-
-def uploadFile
-  poop
-end
-
-def getTodoItems(dirname)
-  tuple = ["www.ourteamwebsite.com", "www.youtube.com/watch?v=dQw4w9WgXcQ"]
-  [ToDoItem.new("CS 360 Reading","pgs. 100-135","11/20/13 3:00pm",[], false),
-     ToDoItem.new("CS 360 Team Meeting","Discuss Project", "3:30 pm", [URLLink.new("www.ourteamwebsite.com",false), URLLink.new("www.youtube.com/watch?v=dQw4w9WgXcQ", true)], true),
-     ToDoItem.new("ENGL 316 Write Essay", "5 pages", "11/19/13 12:00am",[URLLink.new("How to Write.pdf", false)], true)]
+def getTodoItems()
+	tidval=params[:id]
+	tidval||=7
+	ToDoItem.where("user_id = ?", tidval)
 end
 
 def searchUser(search_val)
@@ -86,10 +48,48 @@ def searchUser(search_val)
   User.where("netid LIKE ?", search_val).pluck(:netid)
 end
 
-  def getFoldersFromDirectory(dir)
-    [Folder.new("bill.pdf","document","Today","public"),
-     Folder.new("john.pdf","document", "Tomorrow","shared"),
-     Folder.new("src/", "folder", "A week ago","private")]
-  end
+def extensionToType(ext)
+	if ext==".exe"
+		return "application"
+	end
+	if ext==".wav"
+		return "WAV file"
+	end
+	if ext==".mov"
+		return "movie"
+	end
+	"document"
+end
+
+def fileToFolder(file)
+	Folder.new(file.name,extensionToType(file.file_extension),time_ago_in_words(file.updated_at),file.permissions)
+end
+
+def folderToFolder(fold)
+	Folder.new(fold.name,"folder",time_ago_in_words(fold.updated_at),fold.permissions)
+end
+
+def getFoldersFromDirectory(dir)
+	dir||="/"
+	uid=params[:id]
+	Rails.logger.warn params[:id]
+	if params[:id]=="guest"
+		uid=-1
+	end
+	uid||=-1
+	fitems=FileItem.where("path = ? and user_id = ?",dir,uid)
+	folderItems=[]
+	fitems.each do |f|
+		folderItems.push(fileToFolder(f))
+	end
+	fitems=FolderItem.where("path = ? and user_id = ?",dir,uid)
+	fitems.each do |f|
+		folderItems.push(folderToFolder(f))
+	end
+	if folderItems.length==0
+		folderItems.push(Folder.new("No Items","---","---","---"))
+	end
+	folderItems
+end
 
 end

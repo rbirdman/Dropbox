@@ -20,6 +20,7 @@ Src::Application.routes.draw do
 
   get "shared" => "dropbox#shared" #will be deleted later
   get "shared/:id" => "dropbox#shared"
+  get "shared/:id/*dirs" => "dropbox#shared"
 
   get "users" => "users#user-search"
   get "users/search/" => "users#searched"
@@ -29,7 +30,8 @@ Src::Application.routes.draw do
   get "calendar" => "calender_items#calendar"
   get "calendar/:id" => "calender_items#calendar"
 
-  get "to-do" => "dropbox#to-do"
+  get "to-do" => "dropbox#todo"
+  post "to-do" => "dropbox#todo"
 
   get "signin" => "sessions#new"
   get "sessions/new" => "sessions#new"
