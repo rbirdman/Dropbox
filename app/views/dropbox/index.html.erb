@@ -1,8 +1,8 @@
   <% dirname = "/home/" %>
   <ol class="breadcrumb">
-       <% id = params[:id] %>
-       <% if id == nil %>
-         <% id = "guest" %>
+       <% id = "guest" %>
+       <% if current_user != nil %>
+         <% id = current_user.netid %>
        <% end %>
        <% dirname = dirname + id + "/" %>
        <li><a href=<%= dirname %>><%= id %></a></li>
