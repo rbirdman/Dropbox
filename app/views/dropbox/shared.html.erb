@@ -1,10 +1,11 @@
   <% dirname = "/shared/" %>
   <ol class="breadcrumb">
-       <% if params[:id] == nil %>
-         <% params[:id] = "guest" %>
+       <% id = params[:id] %>
+       <% if id == nil %>
+         <% id = "guest" %>
        <% end %>
-       <% dirname = dirname + params[:id] + "/" %>
-       <li><a href=<%= dirname %>><%= params[:id] %></a></li>
+       <% dirname = dirname + id + "/" %>
+       <li><a href=<%= dirname %>><%= id %></a></li>
 
        <% dirs = params[:dirs] %>
          <% if dirs != nil %>
