@@ -1,4 +1,6 @@
   <% dirname = "/home/" %>
+  <% params[:dirs]||="/" %>
+  
   <ol class="breadcrumb">
        <% id = "guest" %>
        <% if current_user != nil %>
@@ -18,17 +20,31 @@
 
 
   <div style = "margin-left: 40px">
+  <table><tr>
+  <td>
   <h3>File Upload</h3>
-    <%= form_for :file_upload, :html => {:multipart => true} do |f| %>
+    <%= form_for :file_upload, :url => "/dropbox/index", :html => {:multipart => true} do |f| %>
     <div style="margin-bottom: 12px">
     <%= f.file_field :my_file %>
     </div>
+    <%= f.hidden_field :path, :value => params[:dirs] %>
     <div style="margin-bottom: 12px">
     <%= f.submit "Upload" %>
     </div>
   <% end %>
+  </td>
+  <td align="top">
+	  <h3>Add Directory</h3>
+	    <form action="/dropbox/createDirectory" method="post">
+	      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"/>
+	      <input type="text" name="dir" />
+	      <input type="hidden" name="path" value=<%= params[:dirs] %> /><br>
+	      <button type="upload-doc-button" class="btn btn-default" style="margin-top:8px;">Submit</button>
+	    </form>
+  </td>
   </div>
-
+  
+  </tr></table>
 
   <div class="container">
   <table class="table">
@@ -42,22 +58,9 @@
         </thead>
 
         <tbody>
-        <!---
-        <% getFoldersFromDirectory(params[:dirs]).each do |file| %>
-              <tr>
-                <% if file.type == "folder" %>
-                  <td><a href=<%= dirname + file.name %>><%= file.name -%></a></td>
-                <% else %>
-                  <td><a href=""><%= file.name -%></a></td>
-                <% end %>
-                <td><%= file.type -%></td>
-                <td><%= file.modified -%></td>
-                <td><%= file.permissions -%></td>
-              </tr>
-          <% end %>
-        -->
+        
         <% if current_user != nil %>
-        <% getFileItems().each do |file| %>
+        <% getFoldersFromDirectory(params[:dirs]).each do |file| %>
         <tr>
          <td><% if file.file_extension == "folder" %>
                   <a href=<%= dirname + file.name %>><%= file.name -%></a>

@@ -13,7 +13,7 @@ Src::Application.routes.draw do
   get "home/:id/*dirs" => "dropbox#index"
 
   post "dropbox/index" => "dropbox#uploadFile"
-
+  post "dropbox/createDirectory" => "dropbox#createDirectory"
 
   post "shared" => "dropbox#shared"
 

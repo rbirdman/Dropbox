@@ -37,16 +37,7 @@ end
 
 def getTodoItems()
 	if current_user != nil
-		user = User.where("netid = ?", current_user.netid)
-		if user != nil
-			Rails.logger.debug "Methods: "
-			user = user[0]
-			user.methods.each do |method|
-				Rails.logger.debug method
-			end
-
-			return ToDoItem.where("user_id = ?", user.id)
-		end
+		return ToDoItem.where("user_id = ?", current_user.id)
 	end
 	[]
 end
@@ -81,25 +72,18 @@ end
 
 def getFoldersFromDirectory(dir)
 	dir||="/"
-	uid=params[:id]
-	Rails.logger.warn params[:id]
+	
+	if current_user == nil
+	  return
+	end
+	
+	uid=current_user.id
+	Rails.logger.warn uid
 	if params[:id]=="guest"
 		uid=-1
 	end
-	uid||=-1
-	fitems=FileItem.where("path = ? and user_id = ?",dir,uid)
-	folderItems=[]
-	fitems.each do |f|
-		folderItems.push(fileToFolder(f))
-	end
-	fitems=FolderItem.where("path = ? and user_id = ?",dir,uid)
-	fitems.each do |f|
-		folderItems.push(folderToFolder(f))
-	end
-	if folderItems.length==0
-		folderItems.push(Folder.new("No Items","---","---","---"))
-	end
-	folderItems
+	
+	FileItem.where("path = ? and user_id = ?",dir,uid)
 end
 
 end
