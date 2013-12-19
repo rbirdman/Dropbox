@@ -86,7 +86,11 @@
                 
                 <td>
                 <% if !(item.resources.nil? || item.resources.empty?) -%>
+                	<% if defined? item.link && item.link %>
                 	  <a href="http://<%= item.resources -%>"><%= item.resources -%></a><br>
+                	<% else %>
+                	  <%= item.resources -%><br>
+                	<% end %>
                 <% end %>
                 </td>
                 
