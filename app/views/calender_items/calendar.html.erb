@@ -21,9 +21,6 @@
 		scheduler.load("calendar.xml");
 		//scheduler.load("/assets/cal-export.xml");
 		scheduler.attachEvent("onEventSave",function(id,data,flag){
-			alert("Saving event");
-			alert(id);
-			
 			text = data.text;
 			start = data.start_date
 			end = data.end_date
