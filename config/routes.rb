@@ -15,7 +15,7 @@ Src::Application.routes.draw do
   get "/file.file" => "dropbox#downloadFile"
 
   post "dropbox/index" => "dropbox#uploadFile"
-
+  post "dropbox/createDirectory" => "dropbox#createDirectory"
 
   post "shared" => "dropbox#shared"
 

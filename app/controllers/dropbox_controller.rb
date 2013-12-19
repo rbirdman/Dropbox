@@ -36,14 +36,43 @@ class DropboxController < ApplicationController
 
   end
 
+def createDirectory
+  if current_user != nil
+    dirname = params[:dir]
+    path = params[:path]
+    
+    Rails.logger.debug "Directory: " + dirname
+    Rails.logger.debug "Path: " + path
+    if dirname != nil && path != nil
+		FileItem.create(:name => dirname, :permissions => "read/write",
+			:file_extension => "folder", :created_at => nil, :updated_at => nil,
+			:user_id => current_user.id, :path => path);
+    end
+  end
+  
+  returnDir=params[:path]
+  if returnDir == "/"
+    redirect_to :root
+  else
+    redirect_to "/home/" + current_user.netid + "/" + returnDir
+  end
+  
+end
+
 def uploadFile
   if current_user != nil
    require 'fileutils'
+   path = params[:file_upload][:path]
    FileItem.create(:name => params[:file_upload][:my_file].original_filename, :file => params[:my_file], :permissions => "read/write",
-    :file_extension => params[:file_upload][:my_file].content_type, :created_at => nil, :updated_at => nil, :user_id => current_user.id, :path => "the_path");
+    :file_extension => params[:file_upload][:my_file].content_type, :created_at => nil, :updated_at => nil, :user_id => current_user.id, :path => path);
   end
 
-   redirect_to :root
+  returnDir=params[:file_upload][:path] || "/"
+  if returnDir == "/"
+    redirect_to :root
+  else
+    redirect_to "/home/" + current_user.netid + "/" + returnDir
+  end
 end
 
 def downloadFile
