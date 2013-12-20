@@ -1,43 +1,47 @@
 <% dirname = "/shared/" %>
-  <ol class="breadcrumb">
-       <% id = "guest" %>
-       <% if current_user != nil %>
-         <% id = current_user.netid %>
-       <% end %>
-       <% dirname = dirname + id + "/" %>
-       <li><a href=<%= dirname %>><%= id %></a></li>
-
-       <% dirs = params[:dirs] %>
-         <% if dirs != nil %>
-         <% dirs.split('/').each do |dir| %>
-           <% dirname = dirname + dir + "/" %>
-           <li><a href=<%= dirname %>><%= dir %></a></li>
+  <% if signed_in? %>
+    <ol class="breadcrumb">
+         <% id = "guest" %>
+         <% if current_user != nil %>
+           <% id = current_user.netid %>
          <% end %>
-       <% end %>
-  </ol>
+         <% dirname = dirname + id + "/" %>
+         <li><a href=<%= dirname %>><%= id %></a></li>
 
-  <div style = "margin-left: 40px">
-  <h3>File Share</h3>
-    <%= form_for :file_share, :html => {:multipart => true} do |f| %>
-    <div style="margin-bottom: 12px">
-    <%= f.file_field :my_file %>
+         <% dirs = params[:dirs] %>
+           <% if dirs != nil %>
+           <% dirs.split('/').each do |dir| %>
+             <% dirname = dirname + dir + "/" %>
+             <li><a href=<%= dirname %>><%= dir %></a></li>
+           <% end %>
+         <% end %>
+    </ol>
+
+    <div style = "margin-left: 40px">
+    <h3>File Share</h3>
+      <%= form_for :file_share, :html => {:multipart => true} do |f| %>
+      <div style="margin-bottom: 12px">
+      <%= f.file_field :my_file %>
+      </div>
+      <div style="margin-bottom: 12px">
+      <%= f.submit "Share" %>
+      </div>
+    <% end %>
+
+    <div class="container">
+    <table class="table">
+      <thead>
+            <tr>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Modified</th>
+              <th>Shared By</th>
+            </tr>
+          </thead>
+          
+    </table>
+    <h1>Not Implemented</h1>
     </div>
-    <div style="margin-bottom: 12px">
-    <%= f.submit "Share" %>
-    </div>
+  <% else %>
+    <h1>Please Signin to View Your Shared Documents</h1>
   <% end %>
-
-  <div class="container">
-  <table class="table">
-    <thead>
-          <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Modified</th>
-            <th>Shared By</th>
-          </tr>
-        </thead>
-        
-  </table>
-  <h1>Not Implemented</h1>
-  </div>
